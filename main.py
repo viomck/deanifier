@@ -19,7 +19,7 @@ async def on_message(message: discord.Message):
     for word in words:
         ipa = eng_to_ipa.convert(word)
         if (ipa.startswith("di") or ipa.startswith("dɪ")) and word.startswith("de") and word != "dean":
-            await message.channel.send(word.replace("de", "dean"))
+            await message.channel.send(word.replace("de", "dean", 1))
 
 if __name__ == "__main__":
     main()

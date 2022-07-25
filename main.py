@@ -3,6 +3,8 @@ import os
 import re
 import eng_to_ipa
 
+no = ["dean", "dean", "deal"]
+
 client = discord.Client()
 
 def main():
@@ -18,7 +20,11 @@ async def on_message(message: discord.Message):
 
     for word in words:
         ipa = eng_to_ipa.convert(word)
-        if (ipa.startswith("di") or ipa.startswith("dɪ")) and word.startswith("de") and word != "dean":
+        if (ipa.startswith("di") or ipa.startswith("dɪ")) \
+            and word.startswith("de") \
+            and word not in no \
+            and word[:-1] not in no:
+            
             await message.channel.send(word.replace("de", "dean", 1))
 
 if __name__ == "__main__":
